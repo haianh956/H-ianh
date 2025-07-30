@@ -52,7 +52,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/haianh956/Apphub/refs
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Chiriku2013/BananaCatHub/refs/heads/main/BananaCatHub.lua"))()
  end
  })
- AddButton(Tab1o, {
+ AddButton(Tab2o, {
      Name = "marufree",
     Callback = function()
 	  local Settings = {
