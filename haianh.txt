@@ -58,3 +58,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/haianh956/Apphub/refs
 	  local Settings = {
   getgenv().Team = "Marines"
   loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/KimP/refs/heads/main/MaruHub"))()
+  end
+  })
