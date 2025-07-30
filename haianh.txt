@@ -46,8 +46,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/haianh956/Apphub/refs
  end
  })
   AddButton(Tab1o, {
-     Name = "bananafree",
+     Name = "Bananafree",
     Callback = function()
+	  local Settings = {
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Chiriku2013/BananaCatHub/refs/heads/main/BananaCatHub.lua"))()
  end
  })
+ AddButton(Tab1o, {
+     Name = "marufree",
+    Callback = function()
+	  local Settings = {
+  getgenv().Team = "Marines"
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/KimP/refs/heads/main/MaruHub"))()
