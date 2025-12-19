@@ -1,7 +1,7 @@
 local v14 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))();
 local v15 = v14:CreateWindow({
-    Title = "FafaHub-Blox Fruit [ Freemium ]",-- Ngu
-    SubTitle = "By ngu",-- 
+    Title = "?Hub Beta-Blox Fruit [ Freemium ]",-- ? 
+    SubTitle = "By ?,-- 
     TabWidth = 160,
     Theme = "Dark",--
     Acrylic = false,
@@ -9026,5 +9026,6 @@ spawn(function()
         end
     end
 end);
+
 
 
