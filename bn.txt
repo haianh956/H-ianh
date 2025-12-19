@@ -1,19 +1,19 @@
 local v14 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))();
 local v15 = v14:CreateWindow({
-    Title = "Banana Cat Hub-Blox Fruit [ Freemium ]",-- Ngu
+    Title = "FafaHub-Blox Fruit [ Freemium ]",-- Ngu
     SubTitle = "By ngu",-- 
     TabWidth = 160,
     Theme = "Dark",--
     Acrylic = false,
     Size = UDim2.fromOffset(500, 320),
-    MinimizeKey = Enum.KeyCode.tester
+    MinimizeKey = Enum.KeyCode.End
 });
 local v16 = {
     Home = v15:AddTab({
-        Title = "Tab Information"
+        Title = "Tab xem"
     }),
     Main = v15:AddTab({
-        Title = "Tab Farming"
+        Title = "cày cấp"
     }),
     Sea = v15:AddTab({
         Title = "Tab Volcano And Sea Event"
@@ -22,7 +22,7 @@ local v16 = {
         Title = "Tab Farming Other"
     }),
     Setting = v15:AddTab({
-        Title = "Setting Farm"
+        Title = "cài đặtFarm"
     }),
     Status = v15:AddTab({
         Title = "Tab Status And Server"
@@ -9026,4 +9026,5 @@ spawn(function()
         end
     end
 end);
+
 
