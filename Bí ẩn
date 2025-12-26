@@ -5,7 +5,7 @@ import os
 
 # ========= CONFIG =========
 TOKEN = "YOUR_BOT_TOKEN"
-GUILD_ID = 1447947946254532641  # Your server ID
+GUILD_ID = 1447947946254532641
 DATA_FILE = "keys.json"
 
 intents = discord.Intents.default()
@@ -28,30 +28,21 @@ def save_keys(data):
 # ========= READY =========
 @client.event
 async def on_ready():
-    tree.clear_commands(guild=guild)
     await tree.sync(guild=guild)
-    print("✅ Bot is online | Guild commands synced")
+    print("✅ Bot online | Commands synced")
 
-# ========= ADD KEY (ADMIN) =========
+# ========= ADD KEY =========
 @tree.command(name="addkey", description="Add a redeem key (admin)", guild=guild)
-@app_commands.describe(
-    key="Redeem key",
-    reward="Reward for this key"
-)
 async def addkey(interaction: discord.Interaction, key: str, reward: str):
     await interaction.response.defer(ephemeral=True)
 
     if not interaction.user.guild_permissions.administrator:
-        return await interaction.followup.send(
-            "❌ Only administrators can use this command."
-        )
+        return await interaction.followup.send("❌ Admin only.")
 
     data = load_keys()
 
     if key in data:
-        return await interaction.followup.send(
-            "❌ This key already exists."
-        )
+        return await interaction.followup.send("❌ Key already exists.")
 
     data[key] = {
         "reward": reward,
@@ -60,76 +51,61 @@ async def addkey(interaction: discord.Interaction, key: str, reward: str):
     }
 
     save_keys(data)
-
     await interaction.followup.send(
-        f"✅ Key added successfully.\n🔑 Key: `{key}`\n🎁 Reward: **{reward}**"
+        f"✅ Key added\n🔑 `{key}`\n🎁 **{reward}**"
     )
 
 # ========= REDEEM =========
 @tree.command(name="redeem", description="Redeem a key", guild=guild)
-@app_commands.describe(
-    key="Enter your redeem key"
-)
 async def redeem(interaction: discord.Interaction, key: str):
     await interaction.response.defer(ephemeral=True)
 
     data = load_keys()
 
     if key not in data:
-        return await interaction.followup.send(
-            "❌ Invalid key."
-        )
+        return await interaction.followup.send("❌ Invalid key.")
 
     if data[key]["used"]:
-        return await interaction.followup.send(
-            "❌ This key has already been used."
-        )
+        return await interaction.followup.send("❌ Key already used.")
 
     data[key]["used"] = True
     data[key]["user"] = str(interaction.user.id)
     save_keys(data)
 
-    # Send DM
     try:
         await interaction.user.send(
-            f"🎉 **REDEEM SUCCESSFUL** 🎉\n\n"
+            f"🎉 **REDEEM SUCCESS**\n\n"
             f"🔑 Key: `{key}`\n"
             f"🎁 Reward: **{data[key]['reward']}**"
         )
     except:
         pass
 
-    await interaction.followup.send(
-        "✅ Redeem successful! Please check your DMs 📩"
-    )
+    await interaction.followup.send("✅ Redeem successful. Check DM.")
 
-# ========= LIST KEYS (ADMIN) =========
-@tree.command(name="listkey", description="View all keys (admin)", guild=guild)
+# ========= LIST KEY =========
+@tree.command(name="listkey", description="List all keys (admin)", guild=guild)
 async def listkey(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=True)
 
     if not interaction.user.guild_permissions.administrator:
-        return await interaction.followup.send(
-            "❌ Only administrators can use this command."
-        )
+        return await interaction.followup.send("❌ Admin only.")
 
     data = load_keys()
 
     if not data:
-        return await interaction.followup.send(
-            "📭 No keys available."
-        )
+        return await interaction.followup.send("📭 No keys found.")
 
     msg = "📜 **KEY LIST**\n\n"
-    for key, info in data.items():
+    for k, info in data.items():
         status = "USED ✅" if info["used"] else "UNUSED ❌"
-        user = f"<@{info['user']}>" if info["user"] else "—"
+        user = f"<@{info['user']}>" if info["user"] else "-"
 
         msg += (
-            f"🔑 `{key}`\n"
-            f"🎁 Reward: {info['reward']}\n"
-            f"📌 Status: {status}\n"
-            f"👤 User: {user}\n"
+            f"🔑 `{k}`\n"
+            f"🎁 {info['reward']}\n"
+            f"📌 {status}\n"
+            f"👤 {user}\n"
             f"────────────\n"
         )
 
