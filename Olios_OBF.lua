@@ -41,6 +41,6 @@ task.spawn(function()
             return
         end
 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/haianh956/H-ianh/refs/heads/main/Oliosvl_Supportdelta.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/haianh956/H-ianh/main/Oliosvl_Supportdelta.lua"))()
     end)
 end)
